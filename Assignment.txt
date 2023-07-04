@@ -1,0 +1,590 @@
+Question 1 ) public class MathWordProblemSolver {
+    public static void main(String[] args) {
+        String problem = "5 + 13"; // Example input
+        int result = solveMathWordProblem(problem);
+        System.out.println("Output: " + result);
+    }
+
+    public static int solveMathWordProblem(String problem) {
+        String[] parts = problem.split(" ");
+
+        int operand1 = Integer.parseInt(parts[0]);
+        String operator = parts[1];
+        int operand2 = Integer.parseInt(parts[2]);
+
+        int answer = 0;
+
+        switch (operator) {
+            case "+":
+                answer = operand1 + operand2;
+                break;
+            case "-":
+                answer = operand1 - operand2;
+                break;
+            case "*":
+                answer = operand1 * operand2;
+                break;
+            case "/":
+                answer = operand1 / operand2;
+                break;
+        }
+
+        return answer;
+    }
+}
+ 
+
+Que 2) import java.util.Arrays;
+
+public class PrimeFactors {
+    public static void main(String[] args) {
+        int number = 84; // Example input
+        int[] primeFactors = findPrimeFactors(number);
+        System.out.println("Prime Factors of " + number + ": " + Arrays.toString(primeFactors));
+    }
+
+    public static int[] findPrimeFactors(int number) {
+        int[] primeFactors = new int[number];
+        int index = 0;
+
+        // Check for divisible factors starting from 2
+        for (int i = 2; i <= number; i++) {
+            while (number % i == 0) {
+                primeFactors[index++] = i;
+                number /= i;
+            }
+        }
+
+        return Arrays.copyOf(primeFactors, index);
+    }
+}
+
+Que 3)import java.util.Arrays;
+
+public class PrimeFactors {
+    public static void main(String[] args) {
+        int number = 84; // Example input
+        int[] primeFactors = findPrimeFactors(number);
+        System.out.println("Prime Factors of " + number + ": " + Arrays.toString(primeFactors));
+    }
+
+    public static int[] findPrimeFactors(int number) {
+        int[] primeFactors = new int[number];
+        int index = 0;
+
+        // Check for divisible factors starting from 2
+        for (int i = 2; i <= number; i++) {
+            while (number % i == 0) {
+                primeFactors[index++] = i;
+                number /= i;
+            }
+        }
+
+        return Arrays.copyOf(primeFactors, index);
+    }
+}
+
+Que 4)public class CustomFloatParser {
+    public static void main(String[] args) {
+        String str = "-12.34"; // Example input
+        float result = parseFloat(str);
+        System.out.println("Parsed Float: " + result);
+    }
+
+    public static float parseFloat(String str) {
+        int startIndex = 0;
+        int sign = 1;
+
+        // Check for a leading minus sign for negative numbers
+        if (str.charAt(0) == '-') {
+            sign = -1;
+            startIndex = 1;
+        }
+
+        float result = 0;
+        float decimalPlace = 0.1f;
+
+        // Convert the digits and decimal part to a float
+        for (int i = startIndex; i < str.length(); i++) {
+            char c = str.charAt(i);
+
+            if (c == '.') {
+                decimalPlace = 0.1f;
+                continue;
+            }
+
+            int digit = c - '0'; // Convert char to int
+            if (decimalPlace == 0.1f) {
+                result = result * 10 + digit;
+            } else {
+                result = result + digit * decimalPlace;
+                decimalPlace *= 0.1f;
+            }
+        }
+
+        return result * sign;
+    }
+}
+que 5)import java.util.Scanner;
+
+public class NumberGuess {
+    public static void main(String[] args) {
+        int randomNumber = (int) (Math.random() * 100);
+        int guess;
+        int trials = 0;
+
+        System.out.println("Guess a number between 0 and 99!");
+
+        Scanner scanner = new Scanner(System.in);
+        do {
+            System.out.print("Key in your guess: ");
+            guess = scanner.nextInt();
+            trials++;
+
+            if (guess < randomNumber) {
+                System.out.println("Try higher");
+            } else if (guess > randomNumber) {
+                System.out.println("Try lower");
+            }
+        } while (guess != randomNumber);
+
+        System.out.println("You got it in " + trials + " trials!");
+
+        scanner.close();
+    }
+}
+Ques 6)
+
+Ques 7) import java.util.Scanner;
+
+public class ReverseInteger {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a positive integer: ");
+        int number = scanner.nextInt();
+
+        int reversedNumber = reverseInteger(number);
+        System.out.println("The reverse is: " + reversedNumber);
+
+        scanner.close();
+    }
+
+    public static int reverseInteger(int number) {
+        int reversedNumber = 0;
+
+        while (number > 0) {
+            int digit = number % 10;
+            reversedNumber = reversedNumber * 10 + digit;
+            number /= 10;
+        }
+
+        return reversedNumber;
+    }
+}
+
+Ques 8) import java.util.Scanner;
+
+public class TestPalindromicWord {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a word: ");
+        String word = scanner.nextLine();
+
+        if (isPalindrome(word)) {
+            System.out.println("\"" + word + "\" is a palindrome.");
+        } else {
+            System.out.println("\"" + word + "\" is not a palindrome.");
+        }
+
+        scanner.close();
+    }
+
+    public static boolean isPalindrome(String word) {
+        // Remove spaces and convert to lowercase
+        word = word.replaceAll("\\s+", "").toLowerCase();
+
+        int left = 0;
+        int right = word.length() - 1;
+
+        while (left < right) {
+            if (word.charAt(left) != word.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+}
+Ques 9) public class Arithmetic {
+    public static void main(String[] args) {
+        if (args.length != 3) {
+            System.out.println("Invalid number of arguments!");
+            System.out.println("Usage: java Arithmetic <operand1> <operator> <operand2>");
+            System.exit(1);
+        }
+
+        int operand1 = Integer.parseInt(args[0]);
+        String operator = args[1];
+        int operand2 = Integer.parseInt(args[2]);
+
+        int result;
+
+        switch (operator) {
+            case "+":
+                result = operand1 + operand2;
+                System.out.println("Result: " + result);
+                break;
+            case "-":
+                result = operand1 - operand2;
+                System.out.println("Result: " + result);
+                break;
+            case "*":
+                result = operand1 * operand2;
+                System.out.println("Result: " + result);
+                break;
+            case "/":
+                if (operand2 != 0) {
+                    result = operand1 / operand2;
+                    System.out.println("Result: " + result);
+                } else {
+                    System.out.println("Error: Division by zero is not allowed.");
+                }
+                break;
+            default:
+                System.out.println("Invalid operator!");
+                break;
+        }
+    }
+}
+
+Ques 12) public class UniqueElements {
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3, 5, 1, 5, 20, 2, 12, 10};
+
+        System.out.print("All unique elements in the array are: ");
+
+        for (int i = 0; i < array.length; i++) {
+            boolean isUnique = true;
+            for (int j = 0; j < i; j++) {
+                if (array[i] == array[j]) {
+                    isUnique = false;
+                    break;
+                }
+            }
+            if (isUnique) {
+                System.out.print(array[i] + " ");
+            }
+        }
+    }
+}
+
+Ques 13)    
+
+import java.util.Arrays;
+
+public class LeftRotation {
+public static void main(String[] args) {
+int[] arr = { 1, 2, 3, 4, 5 };
+int r = 2;
+
+ leftRotate(arr, r);
+
+    System.out.println(Arrays.toString(arr));
+}
+
+public static void leftRotate(int[] arr, int r) {
+    if (arr == null || arr.length == 0 || r <= 0) {
+        return;
+    }
+
+    int n = arr.length;
+    r = r % n;
+
+    reverseArray(arr, 0, r - 1);
+    reverseArray(arr, r, n - 1);
+    reverseArray(arr, 0, n - 1);
+}
+
+public static void reverseArray(int[] arr, int start, int end) {
+    while (start < end) {
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        start++;
+        end--;
+    }
+}
+ques 14)import java.util.Scanner;
+
+public class MatrixAddition {
+    public static void main(String[] args) {
+        int rows = 3;
+        int columns = 3;
+
+        int[][] matrix1 = new int[rows][columns];
+        int[][] matrix2 = new int[rows][columns];
+        int[][] sumMatrix = new int[rows][columns];
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Input elements in 3x3 matrix1:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                matrix1[i][j] = scanner.nextInt();
+            }
+        }
+
+        System.out.println("Input elements in 3x3 matrix2:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                matrix2[i][j] = scanner.nextInt();
+            }
+        }
+
+        // Adding the matrices
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                sumMatrix[i][j] = matrix1[i][j] + matrix2[i][j];
+            }
+        }
+
+        // Printing the sum matrix
+        System.out.println("Sum of the matrices:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print(sumMatrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        scanner.close();
+    }
+}
+ques 15) import java.io.File;
+import java.util.Scanner;
+
+public class FileExistenceCheck {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a file or directory Path: ");
+        String path = scanner.nextLine();
+
+        File file = new File(path);
+
+        if (file.exists()) {
+            if (file.isDirectory()) {
+                System.out.println("This(" + path + ") is a directory.");
+            } else {
+                System.out.println("This(" + path + ") is a file.");
+            }
+        } else {
+            System.out.println("This(" + path + ") does not exist.");
+        }
+
+        scanner.close();
+    }
+}
+
+ques 16) import java.io.File;
+
+public class FileListRecursive {
+    public static void main(String[] args) {
+        String directoryPath = "C:/example"; // Specify the directory path here
+        File directory = new File(directoryPath);
+
+        // Make sure the directory exists
+        if (directory.exists() && directory.isDirectory()) {
+            listFilesRecursive(directory);
+        } else {
+            System.out.println("Directory does not exist: " + directoryPath);
+        }
+    }
+
+    public static void listFilesRecursive(File directory) {
+        File[] files = directory.listFiles();
+
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    // Recursive call for subdirectories
+                    listFilesRecursive(file);
+                } else {
+                    // Print file path
+                    System.out.println(file.getAbsolutePath());
+                }
+            }
+        }
+    }
+}
+ Ques 17)import java.io.File;
+
+public class FileRename {
+    public static void main(String[] args) {
+        String oldFilePath = "C:/path/to/oldfile.txt";  // Specify the old file path here
+        String newFilePath = "C:/path/to/newfile.txt";  // Specify the new file path here
+
+        File oldFile = new File(oldFilePath);
+        File newFile = new File(newFilePath);
+
+        // Check if the old file exists
+        if (oldFile.exists()) {
+            // Rename the file
+            boolean renamed = oldFile.renameTo(newFile);
+
+            if (renamed) {
+                System.out.println("File renamed successfully.");
+            } else {
+                System.out.println("Failed to rename the file.");
+            }
+        } else {
+            System.out.println("Old file does not exist.");
+        }
+    }
+}
+ ques 18)import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
+
+public class FilePropertiesExample {
+    public static void main(String[] args) {
+        String filename = "path_to_your_file";
+        try {
+            Path filePath = Paths.get(filename);
+
+  
+            BasicFileAttributes fileAttributes = Files.readAttributes(filePath, BasicFileAttributes.class);
+
+            // Print file properties
+            System.out.println("File Properties:");
+            System.out.println("File Size: " + fileAttributes.size() + " bytes");
+            System.out.println("Creation Time: " + fileAttributes.creationTime());
+            System.out.println("Last Accessed Time: " + fileAttributes.lastAccessTime());
+            System.out.println("Last Modified Time: " + fileAttributes.lastModifiedTime());
+            System.out.println("Is Directory: " + fileAttributes.isDirectory());
+            System.out.println("Is Regular File: " + fileAttributes.isRegularFile());
+            System.out.println("Is Symbolic Link: " + fileAttributes.isSymbolicLink());
+            System.out.println("File Owner: " + Files.getOwner(filePath));
+            System.out.println("File Permissions: " + Files.getPosixFilePermissions(filePath));
+
+        } catch (IOException e) {
+            System.out.println("Error: Unable to get file properties.");
+            e.printStackTrace();
+        }
+    }
+}
+
+Ques 19)import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class FileCopyExample {
+    public static void main(String[] args) {
+        try {
+            // Input file paths
+            String sourceFile = "C:\\temp\\sample.txt";  // Replace with the actual source file path
+            String targetFile = "C:\\temp\\sample_copy.txt";  // Replace with the actual target file path
+
+            // Create FileReader and FileWriter objects
+            FileReader reader = new FileReader(sourceFile);
+            FileWriter writer = new FileWriter(targetFile);
+
+            // Copy contents from source file to target file
+            int character;
+            while ((character = reader.read()) != -1) {
+                writer.write(character);
+            }
+
+            // Close the FileReader and FileWriter objects
+            reader.close();
+            writer.close();
+
+            System.out.println("File(" + sourceFile + ") copied successfully.");
+
+        } catch (IOException e) {
+            System.out.println("Error: Unable to copy file.");
+            e.printStackTrace();
+        }
+    }
+}
+
+Ques 20)import java.io.FileWriter;
+import java.io.IOException;
+
+public class FileAppendExample {
+    public static void main(String[] args) {
+        try {
+            // Source file path
+            String filePath = "interd.md"; // Replace with the actual file path
+
+            // String to append
+            String dataToAppend = "\nLearning C programming at Codeforwin is simple and easy.";
+
+            // Create FileWriter object with append mode
+            FileWriter writer = new FileWriter(filePath, true);
+
+            // Append data to the file
+            writer.append(dataToAppend);
+
+            // Close the FileWriter object
+            writer.close();
+
+            System.out.println("Data appended to the file successfully.");
+
+        } catch (IOException e) {
+            System.out.println("Error: Unable to append data to the file.");
+            e.printStackTrace();
+        }
+    }
+}
+Ques 21)package java.service;
+
+public class NameService {
+    public String convertToTitleCase(String name) {
+        String[] words = name.split(" ");
+        StringBuilder result = new StringBuilder();
+
+        for (String word : words) {
+            String firstLetter = word.substring(0, 1).toUpperCase();
+            String restOfWord = word.substring(1).toLowerCase();
+            result.append(firstLetter).append(restOfWord).append(" ");
+        }
+
+        return result.toString().trim();
+    }
+}
+
+Step 3: Create the NameView class
+package java.view;
+import java.service.NameService;
+
+public class NameView {
+    public String getFormattedName(String name) {
+        NameService nameService = new NameService();
+        String formattedName = nameService.convertToTitleCase(name);
+        return "Hello " + formattedName + "!!";
+    }
+}
+Step 4: Create the TestService class
+package java.test;
+import java.view.NameView;
+
+public class TestService {
+    public static void main(String[] args) {
+        NameView nameView = new NameView();
+
+        // Test the NameView method with different names
+        String name1 = "RAHUL Sharma";
+        String result1 = nameView.getFormattedName(name1);
+        System.out.println(result1);
+
+        String name2 = "rahul sharma";
+        String result2 = nameView.getFormattedName(name2);
+        System.out.println(result2);
+    }
+}
