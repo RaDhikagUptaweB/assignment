@@ -153,8 +153,6 @@ public class NumberGuess {
         scanner.close();
     }
 }
-Ques 6)
-
 Ques 7) import java.util.Scanner;
 
 public class ReverseInteger {
